@@ -27,15 +27,15 @@ function omit(obj, keyToOmit) {
 }
 
 // Example
-const objectWithKVPs = {
-  key: 'value',
-  foo: 'foo value',
-  bar: 'bar value',
-  abc: { nested: 'object' }
-}
+// const objectWithKVPs = {
+//   key: 'value',
+//   foo: 'foo value',
+//   bar: 'bar value',
+//   abc: { nested: 'object' }
+// }
 
-// To remove the foo key value pair
-const newObjectWithKVPs = omit(objectWithKVPs, 'foo');
+// // To remove the foo key value pair
+// const newObjectWithKVPs = omit(objectWithKVPs, 'foo');
 
 
 class App extends Component {
@@ -58,6 +58,11 @@ class App extends Component {
           allCards: newCardList,
         }
       })
+    }
+
+    handleAddCard = (id) => {
+      const newCard = newRandomCard();
+      
     }
     
     
