@@ -38,3 +38,4 @@ export default {
     'm': { id: 'm', title: 'Thirteenth card', content: 'lorem ipsum' },
   },
 }
+

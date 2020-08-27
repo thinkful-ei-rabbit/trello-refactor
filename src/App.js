@@ -8,6 +8,7 @@ For the "Add Random Card" button, you can use this function to generate a random
 */
 
 const newRandomCard = () => {
+  console.log('ran newRandomCard');
   const id = Math.random().toString(36).substring(2, 4)
     + Math.random().toString(36).substring(2, 4);
   return {
@@ -50,7 +51,6 @@ class App extends Component {
         ...list,
         cardIds: list.cardIds.filter(id => id !== cardId)
       }))
-      console.log('delete ran'); // change this to remove the card
       const newCardList = omit(allCards, cardId)
       this.setState({
         store: {
@@ -62,13 +62,30 @@ class App extends Component {
 
     handleAddCard = (id) => {
       const newCard = newRandomCard();
+      const newList = this.state.store.lists.map(list => {
+        if(list.id === id) {
+          return {
+            ...list, 
+            cardIds: [ ...list.cardIds, newCard.id ]
+          }
+        }
+        return list
+      })
+      this.setState({
+        store: {
+          lists: newList,
+          allCards: {
+            ...this.state.store.allCards,
+            [newCard.id]: newCard
+          }
+        }
+      })
       
     }
     
     
 
   render() {
-    console.log(STORE)
     const { store } = this.state
     return (
       <main className='App'>
@@ -82,6 +99,7 @@ class App extends Component {
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
               onDeleteClick={this.handleDelete}
+              onClickAdd={this.handleAddCard}
             />
           ))}
         </div>
