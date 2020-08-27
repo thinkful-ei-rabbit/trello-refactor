@@ -42,7 +42,6 @@ function omit(obj, keyToOmit) {
 class App extends Component {
   state = {
     store: STORE
-
     };
 
     handleDelete = (cardId) => {
@@ -95,6 +94,7 @@ class App extends Component {
         <div className='App-list'>
           {store.lists.map(list => (
             <List
+              id={list.id}
               key={list.id}
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
